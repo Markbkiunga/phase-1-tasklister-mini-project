@@ -1,23 +1,19 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // your code here
-  let form = document.querySelector('form');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    buildToDo(e.target.new_task_description.value);
-  });
+const form = document.querySelector('form');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  buildToDo(e.target.new_task_description.value);
 });
+const listContainer = document.querySelector('#list');
 
 function buildToDo(todo) {
-  let p = document.createElement('p');
-  let button = document.createElement('button');
-  button.addEventListener('click', handleDelete);
-  button.textContent = 'X';
-  p.textContent = `${todo} `;
-  p.appendChild(button);
-  console.log(p);
-  document.querySelector('#list').appendChild('p');
-}
+  let toBeDone = document.createElement('p');
+  toBeDone.textContent = `${todo} `;
+  listContainer.appendChild(toBeDone);
 
-function handleDelete(e) {
-  e.target.parentNode.remove();
+  let button = document.createElement('button');
+  button.textContent = 'X';
+  toBeDone.appendChild(button);
+  button.addEventListener('click', () => {
+    toBeDone.remove();
+  });
 }
